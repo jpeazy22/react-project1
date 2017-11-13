@@ -7,7 +7,13 @@
     "webpack": "^3.8.1"
   },
   "devDependencies": {
-    "gulp-install": "^1.1.0",
+	"gulp": "latest",
+    "gulp-util": "latest",
+    "gulp-sass": "latest",
+    "gulp-coffee": "latest",
+    "gulp-uglify": "latest",
+    "gulp-concat": "latest",
+    "gulp-connect": "latest",
     "webpack": "^3.8.1"
   },
   "scripts": {
