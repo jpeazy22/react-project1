@@ -7,13 +7,14 @@
     "webpack": "^3.8.1"
   },
   "devDependencies": {
-	"gulp": "latest",
-    "gulp-util": "latest",
-    "gulp-sass": "latest",
+    "gulp": "latest",
     "gulp-coffee": "latest",
-    "gulp-uglify": "latest",
     "gulp-concat": "latest",
     "gulp-connect": "latest",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "latest",
+    "gulp-util": "latest",
+    "gulp-webserver": "^0.9.1",
     "webpack": "^3.8.1"
   },
   "scripts": {
