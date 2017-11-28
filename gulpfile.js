@@ -6,9 +6,7 @@ var gulp = require('gulp'),
 	runSequence = require('run-sequence'),
 	minify = require('gulp-minify-css'),
 	merge = require('merge-stream'),
-	webpack = require("webpack"),
-	webpack = require('webpack-stream'),
-	WebpackDevServer = require("webpack-dev-server");
+	webpack = require('webpack-stream');
 
 gulp.task('build/admin', function() {
 	var scssStream = gulp.src('styles/*.scss')
@@ -19,7 +17,7 @@ gulp.task('build/admin', function() {
 	var mergedStream = merge(scssStream, cssStream)
 		.pipe(concat('styles.css'))
 		.pipe(minify())
-		.pipe(gulp.dest('web/css'));
+		.pipe(gulp.dest('dist/css'));
 	return mergedStream;
 });
 
@@ -36,29 +34,11 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task('default', function() {
-  return gulp.src('src/entry.js')
-    .pipe(webpack())
-    .pipe(gulp.dest('dist/'));
-});
-
-gulp.task("webpack-dev-server", function(callback) {
-    // Start a webpack-dev-server
-    var compiler = webpack({
-        // configuration
-    });
-
-    new WebpackDevServer(compiler, {
-        // server and middleware options
-    }).listen(8080, "localhost", function(err) {
-        if(err) throw new gutil.PluginError("webpack-dev-server", err);
-        // Server listening
-        gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
-
-        // keep the server alive or continue?
-        // callback();
-    });
-});
+// gulp.task('default', function() {
+//   return gulp.src('src/entry.js')
+//     .pipe(webpack())
+//     .pipe(gulp.dest('dist/js'));
+// });
 
 gulp.task('styles', function() {
     gulp.src('styles/*.scss')
@@ -78,11 +58,14 @@ gulp.task('webserver', function() {
 	}));
 });
 
+var gutil = require('gulp-util');
+
 gulp.task('js', function() {
-	gulp.src('scripts/*.js')
+	return gulp.src('src/*.js')
 	.pipe(uglify())
-	.pipe(concat('script.js'))
-	.pipe(gulp.dest('assests'))
+	// .pipe(concat('src/*.js'))
+	.on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
+	.pipe(gulp.dest('dist/js/bundle.js'))
 })
 
 //Watch task
