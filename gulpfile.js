@@ -58,15 +58,15 @@ gulp.task('webserver', function() {
 	}));
 });
 
-var gutil = require('gulp-util');
+// var gutil = require('gulp-util');
 
-gulp.task('js', function() {
-	return gulp.src('src/*.js')
-	.pipe(uglify())
-	// .pipe(concat('src/*.js'))
-	.on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
-	.pipe(gulp.dest('dist/js/bundle.js'))
-})
+// gulp.task('js', function() {
+// 	return gulp.src('src/*.js')
+// 	.pipe(uglify())
+// 	.pipe(concat('src/*.js'))
+// 	// .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
+// 	.pipe(gulp.dest('dist/js/bundle.js'))
+// })
 
 //Watch task
 gulp.task('watch',function() {
@@ -75,7 +75,7 @@ gulp.task('watch',function() {
 
 //Run multiple task
 gulp.task('develop', function(done) {
-	runSequence('watch', 'js', 'webserver', function() {
+	runSequence('watch', 'webserver', function() {
 		console.log('run somethinge else');
 		done();
 	});
