@@ -6,11 +6,13 @@
 </head>
 <body>
 	<script src="src/app.js"></script>
+	<script src="dist/main.bundle.js"></script>
 	<div id="content"></div>
 	<script src="https://fb.me/react-0.14.6.js"></script>
 	<script src="https://fb.me/react-dom-0.14.6.js"></script>
 	<script src="http://fb.me/JSXTransformer-0.12.1.js"></script>
 	<script type="text/jsx">
+	
 	/*Add React code here*/
 	var DATA = {    
 		name: 'John Smith',
@@ -55,6 +57,7 @@
 			);
 		}
 	});
+
 	ReactDOM.render(<App profileData={DATA} />, document.getElementById('content'));
 	</script>
 </body>
