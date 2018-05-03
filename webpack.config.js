@@ -1,26 +1,29 @@
-
-var path = require('path');
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 module.exports = {
-	entry: './src/app.js',
+	entry: {
+		main: __dirname + 'src/app.js'
+	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: __dirname + 'dist',
 		filename: 'js.bundle.js'
+	},
+	resolve: {
+		extensions: ['.js', '.jsx']
+	},
+	stats: {
+		errorDetails: true
 	},
 	module: {
 		loaders: [
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				loader: 'babel-loader',
+				exclude: /(node_modules|browser_components)/,
 				query: {
-					presets: ['es2015']
+					presets: ['react', 'es2015']
 				}
 			}
 		]
-	},
-	stats: {
-		colors: true
-	},
-	devtool: 'source-map'
+	}
 };

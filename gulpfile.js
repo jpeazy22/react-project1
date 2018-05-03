@@ -21,22 +21,10 @@ gulp.task('build/admin', function() {
 	return mergedStream;
 });
 
-gulp.task("webpack", function(callback) {
-    // run webpack
-    webpack({
-        // configuration
-    }, function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack", err);
-        gutil.log("[webpack]", stats.toString({
-            // output options
-        }));
-        callback();
-    });
-});
 
 gulp.task('default', function() {
   return gulp.src('src/app.js')
-    .pipe(webpack())
+    .pipe(webpack(require('./webpack.config')))
     .pipe(gulp.dest('dist/js'));
 });
 
